@@ -22,10 +22,9 @@ void loop(){
     delay(200);
 }
 
-/* 
-expected results        raw values
-knob is @ minimum -> approx. 0
-knob is @ middle -> approx. 512
-knob is @ maxiomum -> approx. 1023 
 
-*/
+// expected results        raw values
+// knob is @ minimum -> approx. 0
+// knob is @ middle -> approx. 512
+// knob is @ maxiomum -> approx. 1023 
+

@@ -58,5 +58,5 @@ void stopMotor(){
     analogWrite(ENA, 0);
 
     digitalWrite(IN1, LOW);
-    digitalWrite(IN1, LOW);
+    digitalWrite(IN2, LOW);
 }
