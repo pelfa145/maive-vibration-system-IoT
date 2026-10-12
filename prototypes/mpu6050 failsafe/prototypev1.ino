@@ -11,10 +11,10 @@
 const int POT_PIN = A0;
 const int MOTOR_PWM_PIN = 5;
 
-// LCD: change 0x27 if your module uses another address
+
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-// MPU-6050
+
 Adafruit_MPU6050 mpu;
 
 // PWM settings: initial values for testing
@@ -22,12 +22,12 @@ const int LEVEL_1_PWM = 64;
 const int LEVEL_2_PWM = 128;
 const int LEVEL_3_PWM = 255;
 
-// Potentiometer thresholds
+// potentiometer thresholds
 const int OFF_THRESHOLD = 4;
 const int LEVEL_1_MAX = 340;
 const int LEVEL_2_MAX = 682;
 
-// Update intervals
+// update intervals
 const unsigned long SENSOR_INTERVAL = 100;
 const unsigned long DISPLAY_INTERVAL = 250;
 const unsigned long SERIAL_INTERVAL = 500;
@@ -36,7 +36,7 @@ unsigned long lastSensorRead = 0;
 unsigned long lastDisplayUpdate = 0;
 unsigned long lastSerialUpdate = 0;
 
-// System state
+// system state
 int potValue = 0;
 int selectedLevel = 0;  // 0 = OFF
 int currentPWM = 0;
@@ -81,7 +81,7 @@ void setup() {
         Serial.println("ERROR: MPU6050 not detected.");
         Serial.println("Motor remains OFF.");
 
-        // Fail-safe: stop if sensor initialization fails
+        // fail safe
         while (true) {
             analogWrite(MOTOR_PWM_PIN, 0);
             delay(100);
@@ -129,9 +129,6 @@ void loop() {
     }
 }
 
-// ==========================================
-// POTENTIOMETER / LEVEL SELECTION
-// ==========================================
 
 void readPotentiometer() {
     potValue = analogRead(POT_PIN);
@@ -150,9 +147,6 @@ void readPotentiometer() {
     }
 }
 
-// ==========================================
-// MOTOR CONTROL
-// ==========================================
 
 void updateMotor() {
     switch (selectedLevel) {
@@ -180,9 +174,6 @@ void updateMotor() {
     analogWrite(MOTOR_PWM_PIN, currentPWM);
 }
 
-// ==========================================
-// ACCELEROMETER
-// ==========================================
 
 void readAccelerometer() {
     sensors_event_t acceleration;
@@ -206,9 +197,6 @@ void readAccelerometer() {
     );
 }
 
-// ==========================================
-// LCD DISPLAY
-// ==========================================
 
 void updateLCD() {
     lcd.setCursor(0, 0);
@@ -230,9 +218,6 @@ void updateLCD() {
     lcd.print(" m/s2  ");
 }
 
-// ==========================================
-// SERIAL MONITOR
-// ==========================================
 
 void printDiagnostics() {
     Serial.print("Pot: ");
